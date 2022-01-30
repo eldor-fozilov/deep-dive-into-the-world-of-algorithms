@@ -9,7 +9,6 @@ def swap(A, i, j):
 def choose_pivot(A, start, end):
     random_pivot = random.choice(A[start:end])
     pivot_index = A.index(random_pivot,start,end)
-    print(pivot_index)
     swap(A, start, pivot_index)
     return A[start]
 
@@ -26,7 +25,6 @@ def quick_sort(A, start, end):
             swap(A, i, j)
         j+=1
     swap(A, start, i)
-
     quick_sort(A,start,i)
     quick_sort(A,i+1,end)
 
