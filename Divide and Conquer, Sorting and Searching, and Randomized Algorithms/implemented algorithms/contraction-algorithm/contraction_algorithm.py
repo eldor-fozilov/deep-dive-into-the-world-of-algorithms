@@ -8,18 +8,26 @@ def min_cut(graph_dict):
     vertices = [vertex for vertex in graph_dict.keys()]
     # choose a random edge
     random_vertex = random.choice(vertices)
-
     sample_space = graph_dict[random_vertex]
     adjacent_vertex = random.choice(sample_space)
-    
-    # delete the connection between the adjacent vertex and all other vertices    
-    for key in graph_dict.keys():
+
+   # delete the connection between the adjacent vertex and all other vertices    
+    for key in graph_dict[adjacent_vertex]:
       while adjacent_vertex in graph_dict[key]:
         graph_dict[key].remove(adjacent_vertex)
 
-    # add all the connections of the adjacent_vertex, the one to be deletted,
-    # to the random_vertex (duplicates also)
 
+    
+    if random_vertex in graph_dict[adjacent_vertex]:
+      graph_dict[adjacent_vertex].remove(random_vertex)
+
+    # create edges with random_vertex and other keys corresponding to adjacent_vertex key
+    for vertex in graph_dict[adjacent_vertex]:
+      if vertex in graph_dict.keys():
+        graph_dict[vertex].append(random_vertex)
+    
+    # add all the connections of the adjacent_vertex, the one to be deletted,
+    # to the random_vertex (duplicates also)     
     graph_dict[random_vertex] += graph_dict[adjacent_vertex]
     
 
@@ -35,12 +43,6 @@ def min_cut(graph_dict):
 
   print(graph_dict)
   
-
-
-
-
-
-
 def main():
     graph_dict = {}
     with open("MinCut.txt") as lists:
