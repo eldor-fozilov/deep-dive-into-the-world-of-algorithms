@@ -1,5 +1,5 @@
 def merge_sort(input_arr):
-    
+
     n = len(input_arr)
     if n <= 1:
         return input_arr
@@ -10,6 +10,7 @@ def merge_sort(input_arr):
     len_arr1, len_arr2 = len(arr_1), len(arr_2)
     # below n (length of the input array) is used for range just for conveniece
     # since the loop will stop before k reaches n
+    # the loop will execute at most ceiling of the number n/2
     for k in range(n):
         if arr_1[i] < arr_2[j]:
             merged_arr.append(arr_1[i])
@@ -26,5 +27,6 @@ def merge_sort(input_arr):
 
     return merged_arr
 
-input = [1,2,4,5,10,11,9,1.5]
+
+input = [1, 2, 4, 5, 10, 11, 9, 1.5]
 print(merge_sort(input))
